@@ -31,4 +31,5 @@ Route::middleware('auth')->group(function () {
 
 
 Route::resource('/book', BookController::class);
+Route::get('{id}/details', [BookController::class, 'details']);
 require __DIR__.'/auth.php';

@@ -16,7 +16,15 @@ class BookController extends Controller
         $books=Book::all();
         return view ('books', compact('books'));
     }
+    public function details($id)
+    {
+        // show all books
+        $book=Book::where('id','=', $id)->first();
+        $publisher = $book->publisher()->first();
+    
+        return view('booksdetails', ['book' => $book, 'publisher' => $publisher]);
 
+    }
     /**
      * Show the form for creating a new resource.
      */
