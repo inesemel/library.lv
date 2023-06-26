@@ -57,8 +57,6 @@ class BookSeeder extends Seeder
         'genre' => 'Dzeja', 'reprint' => false, 'cased' => false, 'description' => '']);
 
         $neput = Publisher::where('title', 'Neputns')->first();
-        $neput->books()->create(['title' => 'Vaska ezers', 'pages' => 84, 'year' => 2022,
-        'genre' => 'Dzeja', 'reprint' => false, 'cased' => false, 'description' => '']);
         $neput->books()->create(['title' => 'Never', 'pages' => 104, 'year' => 2023,
         'genre' => 'Dzeja', 'reprint' => false, 'cased' => false, 'description' => '']);
         $neput->books()->create(['title' => 'Mantojumi', 'pages' => 104, 'year' => 2021,
