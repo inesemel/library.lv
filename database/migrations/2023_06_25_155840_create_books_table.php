@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('genre', 255);
             $table->boolean('reprint')->default(false);
             $table->boolean('cased')->default(true);
-            $table->text('desription');
+            $table->text('description');
             $table->timestamps();
         });
     }
