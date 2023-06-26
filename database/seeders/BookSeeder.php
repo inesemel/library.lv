@@ -22,7 +22,7 @@ class BookSeeder extends Seeder
         $zabc->books()->create(['title' => 'Zem zilās debesu bļodas', 'pages' => 64, 'year' => 2017,
          'genre' => 'Bērnu literatūra', 'reprint' => true, 'cased' => false, 'description' => '']);
 
-
+        
         //
     }
 }
