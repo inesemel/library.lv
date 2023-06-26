@@ -1,0 +1,69 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Editing the book') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+
+
+                <div class="p-6 text-gray-900">
+                    <form method="POST" action={{ action([App\Http\Controllers\BookController::class, 'update'], [ 'book' => $book->id]) }}>
+                        @csrf
+                        @method('PUT')
+
+                        <fieldset>
+                            <legend>{{__("Edit")}}</legend>
+
+                            <div class="p-3">
+                                
+                                <label for="book_title">{{__("Title")}}</label>
+                                <input type="text" name="book_title" id="book_title" value="{{ old('title', $book->title) }}" />
+                            </div>
+
+                            <div class="p-3">
+                                <label for="book_pages">{{__("Pages")}}</label>
+                                <input id="book_pages" name="book_pages" type="number"  max="2023"
+                                    step="1" value="{{ $book->pages }}" />
+                            </div>
+
+                            <div class="p-6">
+                                <label for="book_year">{{__("Year")}}</label>
+                                <input id="book_year" name="book_year" type="text" value="{{ $book->year }}" />
+                            </div>
+
+                            <div class="p-6">
+                                <label for="book_description">{{__("Description")}}</label>
+                                <br>
+                                <textarea id="description" name="description">{{ $book->description }}</textarea>
+                            </div>
+
+                            <div class="p-6">
+                                <label for="author_id">{{__("Author")}}</label>
+                                <br>
+                                @foreach ($authors as $author)
+                                    <label>
+                                        <input type="checkbox" name="authors[]" value="{{ $author->id }}" {{ $book->authors->contains($author) ? 'checked' : '' }}>
+                                        {{ $author->name }}
+                                    </label>
+                                    <br>
+                                @endforeach
+                            </div>
+
+                            
+                            
+
+                        </fieldset>
+                        
+                        <button type="submit">{{__("Save")}}</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
