@@ -46,9 +46,14 @@
                                     @endforeach
                                 </ul>                       
                             </td>
-
+                            <td class="whitespace-nowrap px-6 py-4 border text-center">
+                                <a href="{{action([App\Http\Controllers\AuthorController::class, 'edit'],['id'=> $author->id])}}">
+                                    {{ __("Edit") }}
+                                </a>    
+                            </td>
                         </tr>
                     @endforeach
+
                     </table>
 
                 </div>

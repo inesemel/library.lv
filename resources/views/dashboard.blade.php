@@ -14,6 +14,9 @@
                 <div class="p-6 text-gray-900">
                 <a href="{{action([App\Http\Controllers\BookController::class, 'index'])}}">{{ __("All books") }}</a>
                 </div>
+                <div class="p-6 text-gray-900">
+                <a href="{{action([App\Http\Controllers\PublisherController::class, 'index'])}}">{{ __("All publishers") }}</a>
+                </div>
             </div>
         </div>
     </div>

@@ -45,6 +45,13 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'book_title' =>'required|max:255',
+            'book_year' => 'integer|required|max:2023',
+            'book_pages' => 'integer|required|gt:0',
+            'description' => 'string|nullable',
+            'book_genre' => 'string|required|max:255'
+        ]);
         $book = new Book;
 
         $book->title = $request->input('book_title');
@@ -88,6 +95,12 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'book_title' =>'required|max:255',
+            'book_year' => 'integer|required|max:2023',
+            'book_pages' => 'integer|required|gt:0',
+            'description' => 'string|nullable'
+        ]);
         $book = Book::findOrFail($id);
 
         $book->update([
