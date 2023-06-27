@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
-use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class AuthorController extends Controller
 {
@@ -13,11 +13,25 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
-        // $authors = Author::all();
-
-        // return view('your-view', compact('authors'));
+        // show all authors
+        $authors=Author::all();
+        return view ('authors', compact('authors'));
     }
+    public function author_details($id)
+    {
+        $author=Author::where('id','=', $id)->first();
+        return view('authordetails', ['author' => $author]);
+    }
+
+    public function showAll(string $id)
+    {
+        //
+        $authors = Author::all();
+        $book=Book::where('id','=', $id)->first();
+
+        return view('book_edit', [compact('authors'), compact('book')]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,13 +52,9 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showAll(string $id)
+    public function show(string $id)
     {
         //
-        $authors = Author::all();
-        $book=Book::where('id','=', $id)->first();
-
-        return view('book_edit', [compact('authors'), compact('book')]);
     }
 
     /**
