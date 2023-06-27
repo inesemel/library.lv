@@ -15,7 +15,6 @@
 
                     <h3 class='p-4'>All books</h3>
 
-
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>

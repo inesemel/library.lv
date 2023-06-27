@@ -25,22 +25,33 @@
 
                             <div class="p-3">
                                 <label for="book_pages">{{__("Pages")}}</label>
-                                <input id="book_pages" name="book_pages" type="number"  max="2023"
-                                    step="1" value="{{ $book->pages }}" />
+                                <input id="book_pages" name="book_pages" type="number" value="{{ $book->pages }}" />
                             </div>
 
-                            <div class="p-6">
+                            <div class="p-3">
                                 <label for="book_year">{{__("Year")}}</label>
-                                <input id="book_year" name="book_year" type="text" value="{{ $book->year }}" />
+                                <input id="book_year" name="book_year" type="number" max=2023 step="1" value="{{ $book->year }}" />
                             </div>
 
-                            <div class="p-6">
+                            <div class="p-3">
                                 <label for="book_description">{{__("Description")}}</label>
                                 <br>
                                 <textarea id="description" name="description">{{ $book->description }}</textarea>
                             </div>
 
-                            <div class="p-6">
+                            <div>
+                                <label for="publisher_id">{{__("Publisher")}}</label>
+                                <select name="publisher_id" id="publisher_id">
+                                    
+                                    @foreach ($publishers as $publisher)
+                                        <option value="{{ $publisher->id }}"
+                                            {{ $publisher->id == $book->publisher_id ? ' selected' : '' }}>{{ $publisher->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="p-3">
                                 <label for="author_id">{{__("Author")}}</label>
                                 <br>
                                 @foreach ($authors->sortBy('name') as $author)
@@ -53,8 +64,10 @@
                             </div>
 
                         </fieldset>
+
                         <div class="px-6 py-4 text-right">
                             <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:lavender" type="submit">{{__("Save")}}</button>
+
                         </div>
                     </form>
 

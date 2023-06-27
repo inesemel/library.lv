@@ -17,6 +17,8 @@
                     </x-nav-link>
                 </div>
 
+
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
                         {{ __('All books') }}
@@ -28,11 +30,13 @@
                         {{ __('All authors') }}
                     </x-nav-link>
                 </div>
+
                 {{----}} <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('favorite.index')" :active="request()->routeIs('favorite.index')">
                         {{ __('Favorites') }}
                     </x-nav-link>
                 </div>
+
             </div>
 
             <!-- Settings Dropdown -->

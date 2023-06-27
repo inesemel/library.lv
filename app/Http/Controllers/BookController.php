@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -31,7 +32,11 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $authors = Author::orderBy('name')->get();
+        $publishers = Publisher::orderBy('title')->get();
+        //return view('book_new', array('publishers' =>$publishers, 'authors' => $authors));
+        
+        return view('book_new', ['authors' => $authors, 'publishers' => $publishers]);
     }
 
     /**
@@ -40,6 +45,21 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
+        $book = new Book;
+
+        $book->title = $request->input('book_title');
+        $book->pages = $request->input('book_pages');
+        $book->year = $request->input('book_year');
+        $book->description = $request->input('description');
+        $book->genre = $request->input('book_genre');
+        $book->cased = $request->has('cased');
+        $book->reprint = $request->has('reprint');
+        $book->publisher_id = $request->input('publisher_id');
+
+        $book->save();
+        $selectedAuthors = $request->input('authors', []);
+        $book->authors()->attach($selectedAuthors);
+        return redirect(action([BookController::class, 'index']));
     }
 
     /**
@@ -57,8 +77,9 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $authors = Author::all();
+        $publishers = Publisher::orderBy('title')->get();
 
-        return view('book_edit', compact('book', 'authors'));
+        return view('book_edit', compact('book', 'authors', 'publishers'));
     }
 
     /**
@@ -73,7 +94,8 @@ class BookController extends Controller
             'title' => $request->input('book_title'),
             'year' => $request->input('book_year'),
             'pages' => $request->input('book_pages'),
-            'description' => $request->input('description')
+            'description' => $request->input('description'),
+            'publisher_id' => $request->input('publisher_id')
             
         ]);
     
@@ -91,8 +113,10 @@ class BookController extends Controller
         //     $book->authors()->attach($author->id);
         // }
         
+
         /* return redirect(action([BookController::class, 'index'])); */ //redirect uz galveno lapu
         return redirect(action([BookController::class, 'details'],['id'=> $book->id])); //redirect uz grāmatas lapu
+
     }
 
     /**

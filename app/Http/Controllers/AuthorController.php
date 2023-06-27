@@ -13,23 +13,16 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        // show all authors
+
         $authors=Author::all();
         return view ('authors', compact('authors'));
     }
+
     public function author_details($id)
     {
         $author=Author::where('id','=', $id)->first();
         return view('authordetails', ['author' => $author]);
-    }
 
-    public function showAll(string $id)
-    {
-        //
-        $authors = Author::all();
-        $book=Book::where('id','=', $id)->first();
-
-        return view('book_edit', [compact('authors'), compact('book')]);
     }
 
 
