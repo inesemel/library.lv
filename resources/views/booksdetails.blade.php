@@ -13,7 +13,9 @@
 
                 <div class="p-6 text-gray-900">
 
+
                 <h3 class='p-4 font-semibold'>{{__("Details")}}</h3>
+
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>
@@ -34,7 +36,9 @@
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <ul>
                                         @foreach($book->authors as $author)
-                                        <li>
+
+                                            <li>
+
                                                 <a href="{{action([App\Http\Controllers\AuthorController::class, 'author_details'],['id'=> $author->id])}}">
                                                     {{$author->name}}
                                                 </a> 
@@ -47,6 +51,7 @@
                                
                                 <td class="whitespace-nowrap px-6 py-4">{{ $publisher->title }}</td>
                                 <td class="whitespace-nowrap px-6 py-4">{{ $book->genre }}</td>
+
                                 <td class="whitespace-nowrap px-6 py-4 border text-center">
                                     <a href="{{action([App\Http\Controllers\BookController::class, 'edit'],['id'=> $book->id])}}">
                                         {{ __("Edit") }}
@@ -56,11 +61,13 @@
                     </table>
 
                 </div>
+
                 <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden min-w-full text-left text-sm font-light">
                         <div class="px-10 py-2 rowspan-2 float-left">
                             <img  source src="https://www.zvaigzne.lv/images/books/100509/300x0_cover.jpg" alt="Grāmatas vāks"></img> {{--$book->image --}}
+
                         </div>
                         <br><br><br>
                         <div class="py-2 font-semibold"><p style="text-align: justify">Discription</p></div> 
@@ -68,6 +75,7 @@
                     </div>
                 </div>
             </div>
+
             </div>
         </div>
     </div>
