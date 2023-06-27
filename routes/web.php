@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use PharIo\Manifest\Author;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +35,8 @@ Route::middleware('auth')->group(function () {
 Route::resource('/book', BookController::class);
 Route::get('{id}/details', [BookController::class, 'details']);
 Route::get('{id}/edit', [BookController::class, 'edit']);
+
+Route::resource('/authors', AuthorController::class);
+Route::get('/author/{id}', [AuthorController::class, 'author_details']);
+
 require __DIR__.'/auth.php';
