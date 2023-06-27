@@ -36,6 +36,8 @@ Route::resource('/book', BookController::class);
 Route::get('{id}/details', [BookController::class, 'details']);
 Route::get('{id}/edit', [BookController::class, 'edit']);
 
+Route::resource('/book/favorite', FavoritesController::class);
+
 Route::resource('/authors', AuthorController::class);
 Route::get('/author/{id}', [AuthorController::class, 'author_details']);
 
