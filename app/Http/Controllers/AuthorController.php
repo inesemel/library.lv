@@ -60,17 +60,33 @@ class AuthorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $author = Author::findOrFail($id);
+        $books= Book::all();
+
+        return view('author_edit', compact('author', 'books'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         //
+        $author = Author::findOrFail($id);
+
+        $author->update([
+            'name' => $request->input('author_name'),
+            'pseudonym' => $request->input('author_pseudonym'),
+            'birthday' => $request->input('author_year'),
+            'country' => $request->input('author_country')
+        ]);
+    
+        $selectedBooks = $request->input('books', []);
+        $author->books()->sync($selectedBooks);
+        
+        return redirect(action([AuthorController::class, 'author_details'],['id'=> $author->id])); //redirect uz grāmatas lapu
     }
 
     /**
