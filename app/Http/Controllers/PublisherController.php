@@ -3,24 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
-use App\Models\Book;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
-class AuthorController extends Controller
+class PublisherController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $authors=Author::all();
-        return view ('authors', compact('authors'));
-    }
-
-    public function author_details($id)
-    {
-        $author=Author::where('id','=', $id)->first();
-        return view('authordetails', ['author' => $author]);
+        //
     }
 
     /**
@@ -42,13 +35,10 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showAll(string $id)
+    public function show_publishers_authors()
     {
         //
-        $authors = Author::all();
-        $book=Book::where('id','=', $id)->first();
-
-        return view('book_edit', [compact('authors'), compact('book')]);
+       
     }
 
     /**

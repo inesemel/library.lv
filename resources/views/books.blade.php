@@ -14,7 +14,9 @@
                 <div class="p-6 text-gray-900">
 
                     <h3 class='p-4'>All books</h3>
-
+                    <td class="whitespace-nowrap px-6 py-4">
+                        <a href="{{action([App\Http\Controllers\BookController::class, 'create'])}}">{{ __("New book") }}</a>    
+                    </td>
                     
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
