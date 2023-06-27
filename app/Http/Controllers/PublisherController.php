@@ -23,7 +23,7 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        //
+        return view('publisher_new');
     }
 
     /**
@@ -32,12 +32,25 @@ class PublisherController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'publisher_title' =>'required|max:255',
+            'publisher_address' => 'required'
+        ]);
+        $publisher = new Publisher;
+
+        $publisher->title = $request->input('publisher_title');
+        $publisher->address = $request->input('publisher_address');
+        
+
+        $publisher->save();
+        
+        return redirect(action([PublisherController::class, 'index']));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show_publishers_authors()
+    public function show()
     {
         //
        
@@ -46,9 +59,11 @@ class PublisherController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $publisher = Publisher::findOrFail($id);
+        
+        return view('publisher_edit', compact('publisher'));
     }
 
     /**
@@ -56,8 +71,22 @@ class PublisherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'publisher_title' =>'required|max:255',
+            'publisher_address' => 'required'
+        ]);
+
+        $publisher = Publisher::findOrFail($id);
+        $publisher->update([
+            'title' => $request->input('publisher_title'),
+            'address' => $request->input('publisher_address')
+        ]);
+
+        return redirect(action([PublisherController::class, 'index'],['id'=> $publisher->id]));
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.

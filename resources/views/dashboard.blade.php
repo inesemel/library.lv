@@ -16,7 +16,7 @@
                 <br><br>
                 <a href="{{action([App\Http\Controllers\AuthorController::class, 'index'])}}">{{ __("All authors") }}</a>
                 <br><br>
-               
+                <a href="{{action([App\Http\Controllers\PublisherController::class, 'index'])}}">{{ __("All publishers") }}</a>
                 </div>
             </div>
         </div>

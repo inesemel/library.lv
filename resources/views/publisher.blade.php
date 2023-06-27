@@ -33,6 +33,11 @@
                                     {{ __("Edit") }}
                                 </a>    
                             </td>
+                            <td class="whitespace-nowrap px-6 py-4 border text-center">
+                                <a href="{{action([App\Http\Controllers\PublisherController::class, 'create'])}}">
+                                    {{ __("Create") }}
+                                </a>    
+                            </td>
                         </tr>
                     @endforeach
 
