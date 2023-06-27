@@ -13,6 +13,10 @@
                 </div>
                 <div class="p-6 text-gray-900">
                 <a href="{{action([App\Http\Controllers\BookController::class, 'index'])}}">{{ __("All books") }}</a>
+                <br><br>
+                <a href="{{action([App\Http\Controllers\AuthorController::class, 'index'])}}">{{ __("All authors") }}</a>
+                <br><br>
+                <a href="{{action([App\Http\Controllers\FavoritesController::class, 'index'])}}">{{ __("Favorites") }}</a>
                 </div>
                 <div class="p-6 text-gray-900">
                 <a href="{{action([App\Http\Controllers\PublisherController::class, 'index'])}}">{{ __("All publishers") }}</a>

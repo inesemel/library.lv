@@ -4,6 +4,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use PharIo\Manifest\Author;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,18 @@ Route::middleware('auth')->group(function () {
 Route::resource('/book', BookController::class, ['except' => ['create', 'details', 'edit', 'create']]);
 Route::get('{id}/details', [BookController::class, 'details']);
 Route::get('{id}/edit', [BookController::class, 'edit']);
+
+
+Route::resource('/book/favorite', FavoritesController::class);
+
+
+
+
 Route::get('/book_new', [BookController::class, 'create']);
 
 Route::resource('/authors', AuthorController::class);
 Route::get('/author/{id}', [AuthorController::class, 'author_details']);
 Route::get('/author/{id}/edit', [AuthorController::class, 'edit']);
+
 
 require __DIR__.'/auth.php';

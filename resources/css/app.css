@@ -3,17 +3,18 @@
 @tailwind utilities;
 
 a {
-    @apply text-blue-800;
-  }
-  
-  a:active,
-  
-  a:hover,
-  
-  a:focus {
-    @apply underline;
-  }
-  
-  a:visited {
-      @apply text-red-800;
-  }
+  @apply text-blue-800;
+}
+
+a:active,
+
+a:hover,
+
+a:focus {
+  @apply underline;
+}
+
+a:visited {
+    @apply text-red-800;
+}
+
