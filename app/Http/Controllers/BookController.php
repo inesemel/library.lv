@@ -91,8 +91,8 @@ class BookController extends Controller
         //     $book->authors()->attach($author->id);
         // }
         
-        return redirect(action([BookController::class, 'index']));
-
+        /* return redirect(action([BookController::class, 'index'])); */ //redirect uz galveno lapu
+        return redirect(action([BookController::class, 'details'],['id'=> $book->id])); //redirect uz grāmatas lapu
     }
 
     /**
