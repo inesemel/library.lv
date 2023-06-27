@@ -40,5 +40,6 @@ Route::resource('/book/favorite', FavoritesController::class);
 
 Route::resource('/authors', AuthorController::class);
 Route::get('/author/{id}', [AuthorController::class, 'author_details']);
+Route::get('/author/{id}/edit', [AuthorController::class, 'edit']);
 
 require __DIR__.'/auth.php';
