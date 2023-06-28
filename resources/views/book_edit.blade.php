@@ -15,9 +15,9 @@
                         @method('PUT')
 
                         <fieldset>
-                        <legend style="font-size: 150%">{{__("Edit")}}</legend>
+                            <legend style="font-size: 150%">{{__("Edit")}}</legend>
                             @if ($errors->any())
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger text-red-800">
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -25,33 +25,36 @@
                                     </ul>
                                 </div>
                             @endif
-
                             <div class="p-3">
-                                
                                 <label for="book_title">{{__("Title")}}</label>
-                                <input type="text" name="book_title" id="book_title" value="{{ old('title', $book->title) }}" />
+                                <br>
+                                <input type="text" name="book_title" id="book_title" value="{{ old('title', $book->title) }}" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
                                 <label for="book_pages">{{__("Pages")}}</label>
-                                <input id="book_pages" name="book_pages" type="number" value="{{ $book->pages }}" />
+                                <br>
+                                <input id="book_pages" name="book_pages" type="number"  max="2023"
+                                    step="1" value="{{ $book->pages }}" />
                             </div>
 
                             <div class="p-3">
                                 <label for="book_year">{{__("Year")}}</label>
+                                <br>
                                 <input id="book_year" name="book_year" type="number" max=2023 step="1" value="{{ $book->year }}" />
                             </div>
 
                             <div class="p-3">
                                 <label for="book_description">{{__("Description")}}</label>
                                 <br>
-                                <textarea id="description" name="description">{{ $book->description }}</textarea>
+                                <textarea id="description" name="description" style="width: 100%">{{ $book->description }}</textarea>
                             </div>
 
-                            <div>
+                            <div class="p-3">
                                 <label for="publisher_id">{{__("Publisher")}}</label>
+                                <br>
                                 <select name="publisher_id" id="publisher_id">
-                                    
+
                                     @foreach ($publishers as $publisher)
                                         <option value="{{ $publisher->id }}"
                                             {{ $publisher->id == $book->publisher_id ? ' selected' : '' }}>{{ $publisher->title }}
@@ -60,7 +63,7 @@
                                 </select>
                             </div>
 
-                            <div class="p-3">
+                            <div class="p-4">
                                 <label for="author_id">{{__("Author")}}</label>
                                 <br>
                                 @foreach ($authors->sortBy('name') as $author)
@@ -73,11 +76,32 @@
                             </div>
 
                         </fieldset>
-
-                        <div class="px-6 py-4 text-right">
-                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:lavender" type="submit">{{__("Save")}}</button>
-
-                        </div>
+                        <table class="min-w-full text-left font-light">
+                            <td class=" text-left">
+                                <form method="POST" action="{{ route('book.destroy', $book->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <script>
+                                        function confirmDelete() {
+                                            return confirm("Do you really want to delete this book?");
+                                        }
+                                    </script>
+                                    <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:rgb(255, 233, 233)" type="submit" onclick="return confirmDelete()">
+                                        {{__("Delete")}}
+                                    </button>
+                                </form>
+                            </td>
+                            <td class=" text-right">
+                                <form method="POST"
+                                action={{ action([App\Http\Controllers\BookController::class, 'update'], ['book' => $book])}}> {{-- ['book' => $book]) --}}
+                                @csrf
+                                @method('POST')
+                                   <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:rgb(243, 244, 246)" type="submit">
+                                        {{__("Save")}}
+                                    </button>
+                                </form>
+                            </td> 
+                            <table> 
                     </form>
 
                 </div>
