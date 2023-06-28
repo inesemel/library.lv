@@ -31,7 +31,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        $books = Book::orderBy('title')->get();
+        return view('author_new', ['books' => $books]);
     }
 
     /**
@@ -39,8 +40,27 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'author_name' =>'required|max:255',
+            'author_pseudonym' => 'required|max:255',
+            'author_year' => 'date|required',
+            'author_country' => 'required|max:255'
+        ]);
+
+        $author = new Author;
+
+        $author->name = $request->input('author_name');
+        $author->pseudonym = $request->input('author_pseudonym');
+        $author->birthday = $request->input('author_year');
+        $author->country = $request->input('author_country');
+
+
+        $author->save();
+        $selectedBooks = $request->input('books', []);
+        $author->books()->attach($selectedBooks);
+        return redirect(action([AuthorController::class, 'index']));
     }
+
 
     /**
      * Display the specified resource.
@@ -64,9 +84,15 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+         $request->validate([
+            'author_name' =>'required|max:255',
+            'author_pseudonym' => 'required|max:255',
+            'author_year' => 'date|required|max:2023',
+            'author_country' => 'required|max:255'
+        ]); 
+
         $author = Author::findOrFail($id);
 
         $author->update([
@@ -75,10 +101,10 @@ class AuthorController extends Controller
             'birthday' => $request->input('author_year'),
             'country' => $request->input('author_country')
         ]);
-    
+
         $selectedBooks = $request->input('books', []);
         $author->books()->sync($selectedBooks);
-        
+
         return redirect(action([AuthorController::class, 'author_details'],['id'=> $author->id])); //redirect uz grāmatas lapu
     }
 
@@ -87,6 +113,7 @@ class AuthorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Author::findOrfail($id)->delete();
+        return redirect('/authors');
     }
 }
