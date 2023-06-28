@@ -15,9 +15,9 @@
                         
 
                         <fieldset>
-                            <legend>{{__("Create")}}</legend>
+                            <legend class="font-semibold">{{__("Add new publisher")}}</legend>
                             @if ($errors->any())
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger text-red-800">
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -28,18 +28,20 @@
                             <div class="p-3">
                                 
                                 <label for="publisher_title">{{__("Title")}}</label>
-                                <input type="text" name="publisher_title" id="publisher_title" />
+                                <br>
+                                <input type="text" name="publisher_title" id="publisher_title" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
                                 <label for="publisher_address">{{__("Address")}}</label>
-                                <input id="publisher_address" name="publisher_address" type="text"/>
+                                <br>
+                                <input id="publisher_address" name="publisher_address" type="text" style="width: 100%"/>
                             </div>              
 
                         </fieldset>
                         
                         <div class="px-6 py-4 text-right">
-                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" type="submit">{{__("Save")}}</button>
+                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:rgb(243, 244, 246)" type="submit">{{__("Save")}}</button>
                         </div>
                     </form>
 
