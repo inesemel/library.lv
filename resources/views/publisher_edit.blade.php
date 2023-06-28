@@ -19,26 +19,39 @@
 
                             <div class="p-3">
                                 <label for="publisher_title">{{__("Title")}}</label>
-                                <input type="text" name="publisher_title" id="publisher_title" value="{{ old('title', $publisher->title) }}" />
+                                <br>
+                                <input type="text" name="publisher_title" id="publisher_title" value="{{ old('title', $publisher->title) }}" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
                                 <label for="publisher_address">{{__("Address")}}</label>
-                                <input type="text" name="publisher_address" id="publisher_address" value="{{ old('publisher', $publisher->address) }}" />
+                                <br>
+                                <input type="text" name="publisher_address" id="publisher_address" value="{{ old('publisher', $publisher->address) }}" style="width: 100%"/>
                             </div>
 
                             
                         </fieldset>
-                        <div class="px-6 py-4 text-right">
-                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:lavender" type="submit"
-                             {{-- {{ (!is_null($author->country) && !empty($author->country)
-                                    && !is_null($author->name) && !empty($author->name)
-                                    && !is_null($author->birthday) && !empty($author->birthday)
-                                    && !is_null($author->pseudonym) && !empty($author->pseudonym))
-                                    ? '' : 'disabled' }} --}}>
-                                {{__("Save")}}
-                            </button>
-                        </div> 
+                        <table class="min-w-full text-left font-light">
+                            <td class=" text-left">
+                                <form method="POST" action="{{ route('publishers.destroy', $publisher->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <script>
+                                        function confirmDelete() {
+                                            return confirm("Do you really want to delete this publisher?");
+                                        }
+                                    </script>
+                                    <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:rgb(255, 233, 233)" type="submit" onclick="return confirmDelete()">
+                                        {{__("Delete")}}
+                                    </button>
+                                </form>
+                            </td>
+                            <td class=" text-right">
+                                <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:rgb(243, 244, 246)" type="submit">
+                                    {{__("Save")}}
+                                </button>
+                            </td> 
+                            <table> 
                     </form>
 
                 </div>
