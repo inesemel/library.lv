@@ -49,8 +49,8 @@ class BookController extends Controller
             'book_title' =>'required|max:255',
             'book_year' => 'integer|required|max:2023',
             'book_pages' => 'integer|required|gt:0',
-            'description' => 'string|nullable',
-            'book_genre' => 'string|required|max:255'
+            'description' => 'required', //noņēmu nullable un string
+            'book_genre' => 'required|max:255'
         ]);
         $book = new Book;
 
@@ -95,11 +95,13 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
+         $request->validate([
             'book_title' =>'required|max:255',
             'book_year' => 'integer|required|max:2023',
             'book_pages' => 'integer|required|gt:0',
-            'description' => 'string|nullable'
+            'description' => 'required' //es saprotu, ka grib, lai tas būtu arī
+            //nullable, bet nestrādā, jo laikam datubāžu veidošanā tas ir uzlikts,
+            //kā not NULL, jo nevar citādāk palaist
         ]);
         $book = Book::findOrFail($id);
 
@@ -114,21 +116,11 @@ class BookController extends Controller
     
         $selectedAuthors = $request->input('authors', []);
         $book->authors()->sync($selectedAuthors);
+        $book->save(); //idk
 
-        // $book=Book::where('id','=', $id)->first();
-        // $book->title = $request->book_title;
-        // $book->pages = $request->book_pages;
-        // $book->year = $request->book_year;
-        // $book->description = $request->book_description;
-        // $book->save();
-        // $selectedAuthors = $request->input('authors', []);
-        // foreach ($selectedAuthors as $author) {
-        //     $book->authors()->attach($author->id);
-        // }
         
-
-        /* return redirect(action([BookController::class, 'index'])); */ //redirect uz galveno lapu
-        return redirect(action([BookController::class, 'details'],['id'=> $book->id])); //redirect uz grāmatas lapu
+        //return redirect(action([BookController::class, 'index']));
+        return redirect(action([BookController::class, 'details'],['id'=> $book->id]));
 
     }
 
@@ -137,6 +129,7 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Book::findOrfail($id)->delete();
+        return redirect('/book');
     }
 }
