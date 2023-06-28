@@ -15,9 +15,9 @@
                         
 
                         <fieldset>
-                            <legend>{{__("Create")}}</legend>
+                            <legend class="font-semibold">{{__("Add new book")}}</legend>
                             @if ($errors->any())
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger text-red-800">
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -28,10 +28,11 @@
                             <div class="p-3">
                                 
                                 <label for="book_title">{{__("Title")}}</label>
-                                <input type="text" name="book_title" id="book_title" />
+                                <br>
+                                <input type="text" name="book_title" id="book_title" style="width: 100%"/>
                             </div>
 
-                            <div class="p-3">
+                            <div class="p-4">
                                 <label for="author_id">{{__("Author")}}</label>
                                 <br>
                                 @foreach ($authors as $author)
@@ -45,11 +46,13 @@
 
                             <div class="p-3">
                                 <label for="book_pages">{{__("Pages")}}</label>
+                                <br>
                                 <input id="book_pages" name="book_pages" type="number"/>
                             </div>
 
                             <div class="p-3">
                                 <label for="book_year">{{__("Year")}}</label>
+                                <br>
                                 <input id="book_year" name="book_year" type="number" max=2023 step="1" />
                             </div>
 
@@ -60,7 +63,6 @@
                                 
                                 @foreach ($publishers as $publisher)
                                     <option value="{{ $publisher->id }}" {{ old('publisher_id') == $publisher->id ? 'selected' : '' }}>{{ $publisher->title }}</option>
-                                
                                     <br>
                                 @endforeach
                                 </select>
@@ -69,13 +71,14 @@
                             <div class="p-3">
                                 
                                 <label for="book_genre">{{__("Genre")}}</label>
+                                <br>
                                 <input type="text" name="book_genre" id="book_genre" />
                             </div>
 
                             <div class="p-3">
                                 <label for="description">{{__("Description")}}</label>
                                 <br>
-                                <textarea id="description" name="description"></textarea>
+                                <textarea id="description" name="description" style="width: 100%"></textarea>
                             </div>
 
                             <div class="p-3">
@@ -91,7 +94,9 @@
                         </fieldset>
                         
                         <div class="px-6 py-4 text-right">
-                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" type="submit">{{__("Save")}}</button>
+                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" type="submit" style="background-color:rgb(243, 244, 246)">
+                                {{__("Save")}}
+                            </button>
                         </div>
                     </form>
 
