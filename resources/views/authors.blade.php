@@ -8,12 +8,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
-
-
                 <div class="p-6 text-gray-900">
 
                     <h3 class='p-4'>All authors</h3>
+                    <p class="whitespace-nowrap px-6 py-4 border text-right" style="background-color:rgb(243, 244, 246)">
+                        <a href="{{action([App\Http\Controllers\AuthorController::class, 'create'])}}" >
+                            {{ __("+ Add new author") }}
+                        </a>    
+                    </p>
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>
@@ -53,7 +55,6 @@
                             </td>
                         </tr>
                     @endforeach
-
                     </table>
 
                 </div>
