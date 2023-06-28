@@ -19,25 +19,29 @@
 
                             <div class="p-3">
                                 <label for="author_name">{{__("Name")}}</label>
-                                <input type="text" name="author_name" id="author_name" value="{{ old('name', $author->name) }}" />
+                                <br>
+                                <input type="text" name="author_name" id="author_name" value="{{ old('name', $author->name) }}" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
                                 <label for="author_pseudonym">{{__("Pseudonym")}}</label>
+                                <br>
                                 <input type="text" name="author_pseudonym" id="author_pseudonym" value="{{ old('Pseudonym', $author->pseudonym) }}" />
                             </div>
 
                             <div class="p-3">
                                 <label for="author_year">{{__("Birthday")}}</label>
+                                <br>
                                 <input type="date" name="author_year" id="author_year" value="{{ old('Birthday', $author->birthday) }}" />
                             </div>
 
                             <div class="p-3">
                                 <label for="author_country">{{__("Country")}}</label>
+                                <br>
                                 <input type="text" name="author_country" id="author_country" value="{{ old('Country', $author->country) }}" />
                             </div>
 
-                            <div class="p-6">
+                            <div class="p-4">
                                 <label for="book_id">{{__("Books")}}</label>
                                 <br>
                                 @foreach ($books->sortBy('title') as $book)
@@ -49,16 +53,27 @@
                                 @endforeach
                             </div>
                         </fieldset>
-                        <div class="px-6 py-4 text-right">
-                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:lavender" type="submit"
-                             {{-- {{ (!is_null($author->country) && !empty($author->country)
-                                    && !is_null($author->name) && !empty($author->name)
-                                    && !is_null($author->birthday) && !empty($author->birthday)
-                                    && !is_null($author->pseudonym) && !empty($author->pseudonym))
-                                    ? '' : 'disabled' }} --}}>
+                        <table class="min-w-full text-left font-light">
+                        <td class=" text-left">
+                            <form method="POST" action="{{ route('authors.destroy', $author->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <script>
+                                    function confirmDelete() {
+                                        return confirm("Do you really want to delete this author?");
+                                    }
+                                </script>
+                                <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:rgb(255, 233, 233)" type="submit" onclick="return confirmDelete()">
+                                    {{__("Delete")}}
+                                </button>
+                            </form>
+                        </td>
+                        <td class=" text-right">
+                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:rgb(243, 244, 246)" type="submit">
                                 {{__("Save")}}
                             </button>
-                        </div> 
+                        </td> 
+                        <table> 
                     </form>
 
                 </div>
