@@ -78,6 +78,7 @@
                             <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" style="background-color:lavender" type="submit">{{__("Save")}}</button>
 
                         </div>
+                        
                     </form>
 
                 </div>

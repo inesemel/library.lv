@@ -17,6 +17,12 @@
                 <a href="{{action([App\Http\Controllers\AuthorController::class, 'index'])}}">{{ __("All authors") }}</a>
                 <br><br>
                 <a href="{{action([App\Http\Controllers\PublisherController::class, 'index'])}}">{{ __("All publishers") }}</a>
+                <br><br>
+                <a href="{{action([App\Http\Controllers\BookIssueController::class, 'create'])}}">{{ __("New book issue") }}</a>
+                <br><br>
+                <a href="{{action([App\Http\Controllers\BookIssueController::class, 'index'])}}">{{ __("My book issues") }}</a>
+                <br><br>
+                <a href="{{action([App\Http\Controllers\BookUserController::class, 'favorite'])}}">{{ __("My favorite books") }}</a>
                 </div>
             </div>
         </div>

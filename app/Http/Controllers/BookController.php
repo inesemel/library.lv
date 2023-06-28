@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
+use App\Models\BookUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -69,6 +71,7 @@ class BookController extends Controller
         return redirect(action([BookController::class, 'index']));
     }
 
+    
     /**
      * Display the specified resource.
      */
@@ -135,8 +138,16 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+        $book = Book::findOrFail($id);
+        $book->authors()->detach();
+        $booktitle = $book->title;
+        $book->delete();
+
+        return redirect(action([BookController::class, 'index']));
+
+
     }
 }

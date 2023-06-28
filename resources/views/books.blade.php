@@ -13,8 +13,12 @@
 
                 <div class="p-6 text-gray-900">
 
-                    <h3 class='p-4'>All books</h3>
-
+                    <h3 class='p-4'>{{__("All books")}}</h3>
+                    <p class="whitespace-nowrap px-6 py-4 border text-right" style="background-color:rgb(243, 244, 246)">
+                        <a href="{{action([App\Http\Controllers\BookController::class, 'create'])}}" >
+                            {{ __("+ Add new book") }}
+                        </a>    
+                    </p>
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>
@@ -51,6 +55,12 @@
                                     <a href="{{action([App\Http\Controllers\BookController::class, 'edit'],['id'=> $book->id])}}">
                                         {{ __("Edit") }}
                                     </a>    
+                                </td>
+                                <td>
+                                <form action="{{ route('book.vote', $book->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit">Vote</button>
+                                </form>
                                 </td>
                             </tr>
                         @endforeach

@@ -57,6 +57,15 @@
                                         {{ __("Edit") }}
                                     </a>    
                                 </td>
+                                <td>
+                                <form action="{{action([App\Http\Controllers\BookController::class, 'destroy'],['id'=> $book->id])}}" method="POST" onsubmit="return confirm('Do you really want to delete this book?');">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit">Delete</button>
+                                </form>
+                                </td>
+
                             </tr>
                     </table>
 
