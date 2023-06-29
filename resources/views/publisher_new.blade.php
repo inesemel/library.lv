@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
             {{ __('Add new publisher') }}
         </h2>
     </x-slot>
@@ -9,15 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-6 text-gray-900">
+                <div class="p-6 text-gray-900 dark:text-gray-300 dark:bg-gray-900">
                     <form method="POST" action={{ action([App\Http\Controllers\PublisherController::class, 'store']) }}>
                         @csrf
-                        
 
                         <fieldset>
-                            <legend>{{__("Create")}}</legend>
+                            <legend class="font-semibold">{{__("Add new publisher")}}</legend>
                             @if ($errors->any())
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger text-red-800">
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -28,18 +27,22 @@
                             <div class="p-3">
                                 
                                 <label for="publisher_title">{{__("Title")}}</label>
-                                <input type="text" name="publisher_title" id="publisher_title" />
+                                <br>
+                                <x-text-input type="text" name="publisher_title" id="publisher_title" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
                                 <label for="publisher_address">{{__("Address")}}</label>
-                                <input id="publisher_address" name="publisher_address" type="text"/>
+                                <br>
+                                <x-text-input id="publisher_address" name="publisher_address" type="text" style="width: 100%"/>
                             </div>              
 
                         </fieldset>
                         
                         <div class="px-6 py-4 text-right">
-                            <button class="border max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" type="submit">{{__("Save")}}</button>
+                            <x-primary-button class="max-w-7xl mx-auto sm:px-6 lg:px-8 dark:bg-indigo-400" type="submit">
+                                {{__("Save")}}
+                            </x-primary-button>
                         </div>
                     </form>
 

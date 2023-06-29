@@ -40,10 +40,10 @@ class PublisherController extends Controller
 
         $publisher->title = $request->input('publisher_title');
         $publisher->address = $request->input('publisher_address');
-        
+
 
         $publisher->save();
-        
+
         return redirect(action([PublisherController::class, 'index']));
     }
 
@@ -62,7 +62,7 @@ class PublisherController extends Controller
     public function edit($id)
     {
         $publisher = Publisher::findOrFail($id);
-        
+
         return view('publisher_edit', compact('publisher'));
     }
 
@@ -86,13 +86,13 @@ class PublisherController extends Controller
     }
 
 
-
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        Publisher::findOrfail($id)->delete();
+        return redirect('/publishers');
     }
 }
