@@ -1,22 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
             {{ __('List of publishers') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-900 dark:border-gray-700">
+                <div class="p-6 text-gray-900 dark:text-gray-300">
 
-                <div class="p-6 text-gray-900">
-
-                    <h3 class='p-4'>{{__("All publishers")}}</h3>
-                    <p class="whitespace-nowrap px-6 py-4 border text-right" style="background-color:rgb(243, 244, 246)">
-                        <a href="{{action([App\Http\Controllers\PublisherController::class, 'create'])}}" >
-                            {{ __("+ Add new publisher") }}
-                        </a>    
-                    </p>
+                    <h3 class='p-4 font-semibold'>{{__("All publishers")}}</h3>
+                    <a href="{{action([App\Http\Controllers\PublisherController::class, 'create'])}}" class="scale-100 p-6 border-black bg-gray-100 dark:bg-gray-800 rounded-lg shadow shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[0.99] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
+                        <p>
+                            {{ __("+ Add new publisher") }} 
+                        </p>
+                    </a>    
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>
@@ -31,8 +30,8 @@
                             <td class="whitespace-nowrap px-6 py-4">{{ $publisher->title }}</td>
                             <td class="whitespace-nowrap px-6 py-4">{{ $publisher->address }}</td>
                             
-                            <td class="whitespace-nowrap px-6 py-4 border text-center">
-                                <a href="{{action([App\Http\Controllers\PublisherController::class, 'edit'],['id'=> $publisher->id])}}">
+                            <td class="whitespace-nowrap px-6 py-4 border-l text-center dark:border-neutral-500">
+                                    <a href="{{action([App\Http\Controllers\PublisherController::class, 'edit'],['id'=> $publisher->id])}}">
                                     {{ __("Edit") }}
                                 </a>    
                             </td>
