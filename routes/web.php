@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\BookIssueController;
 use App\Http\Controllers\BookUserController;
+use App\Http\Controllers\FavoritesController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\Author;
 
@@ -60,6 +61,6 @@ Route::post('book/issue', [BookIssueController::class, 'store']);
 Route::get('/issue_index', [BookIssueController::class, 'index']);
 
 Route::post('book/{book}/vote', [BookUserController::class, 'vote'])->name('book.vote');
-Route::get('/favorites', [BookUserController::class, 'favorite']);
+Route::get('/favorite', [FavoritesController::class, 'index']);
 
 require __DIR__.'/auth.php';

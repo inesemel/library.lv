@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
+use App\Models\Book;
+use App\Models\BookUserAdditional;
+use Illuminate\Support\Facades\Auth;
 
 class FavoritesController extends Controller
 {
@@ -11,8 +16,22 @@ class FavoritesController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::id();
+
+        $bookFavs = BookUserAdditional::where('user_id', $userId)->get();
+
+        return view('favorites', compact('bookFavs'));
     }
+    public function author_details($id)
+    {
+
+    }
+
+    public function showAll(string $id)
+    {
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
