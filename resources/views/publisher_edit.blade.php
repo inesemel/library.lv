@@ -33,7 +33,7 @@
                         </fieldset>
                         <table class="min-w-full text-left font-light my-3">
                             <td class=" text-left">
-                                <form method="POST" action="{{ route('publishers.update', $publisher->id)}}" method="POST">
+                                <form method="POST" action="{{ route('publisher.update', $publisher->id)}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <x-primary-button class="max-w-7xl mx-auto sm:px-6 lg:px-8 dark:bg-indigo-400" type="submit">
@@ -49,7 +49,7 @@
                             </td>
 
                             <td class=" text-right"> 
-                                <form action="{{ route('publishers.destroy', $publisher->id)}}" method="POST">
+                                <form action="{{ route('publisher.destroy', $publisher->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <x-danger-button class=" max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" type="submit" onclick="return confirmDelete()">

@@ -93,6 +93,6 @@ class PublisherController extends Controller
     public function destroy(string $id)
     {
         Publisher::findOrfail($id)->delete();
-        return redirect('/publishers');
+        return redirect(action([PublisherController::class, 'index']));;
     }
 }

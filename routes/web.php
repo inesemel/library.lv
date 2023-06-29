@@ -44,21 +44,19 @@ Route::delete('book/{id}', [BookController::class, 'destroy']);
 Route::resource('/book/favorite', FavoritesController::class);
 
 
-
-
-Route::get('/book_new', [BookController::class, 'create']);
+Route::get('/new', [BookController::class, 'create']);
 
 Route::resource('/authors', AuthorController::class);
 Route::get('/author/{id}', [AuthorController::class, 'author_details']);
 Route::get('/author/{id}/edit', [AuthorController::class, 'edit']);
 
-Route::resource('/publishers', PublisherController::class, ['except' => ['edit', 'create']]);
-Route::get('publishers/{id}/edit', [PublisherController::class, 'edit']);
-Route::get('/publisher/create', [PublisherController::class, 'create']);
+Route::resource('/publisher', PublisherController::class, ['except' => ['edit', 'create']]);
+Route::get('publisher/{id}/edit', [PublisherController::class, 'edit']);
+Route::get('publishernew', [PublisherController::class, 'create']);
 
-Route::get('/issue_create', [BookIssueController::class, 'create']);
-Route::post('book/issue', [BookIssueController::class, 'store']);
-Route::get('/issue_index', [BookIssueController::class, 'index']);
+Route::get('/issue/create', [BookIssueController::class, 'create']);
+Route::post('book/issue/new', [BookIssueController::class, 'store']);
+Route::get('/issue/view', [BookIssueController::class, 'index']);
 
 Route::post('book/{book}/vote', [BookUserController::class, 'vote'])->name('book.vote');
 Route::get('/favorite', [FavoritesController::class, 'index']);

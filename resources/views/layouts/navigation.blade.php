@@ -28,6 +28,11 @@
                         {{ __('All authors') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('publisher.index')" :active="request()->routeIs('publisher.index')">
+                        {{ __('All publishers') }}
+                    </x-nav-link>
+                </div>
                 {{----}} <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('favorite.index')" :active="request()->routeIs('favorite.index')">
                         {{ __('Favorites') }}
