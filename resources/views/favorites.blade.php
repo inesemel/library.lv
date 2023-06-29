@@ -1,21 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
-            {{ __('List of books') }}
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('List of liked books') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-900 dark:border-gray-700">
-                <div class="p-6 text-gray-900  dark:text-gray-300">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                    <h3 class='p-4 font-semibold'>{{__("All books")}}</h3>
-                    <a href="{{action([App\Http\Controllers\BookController::class, 'create'])}}" class="scale-100 p-6 border-black bg-gray-100 dark:bg-gray-800 rounded-lg shadow shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[0.99] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
-                        <p>
-                            {{ __("+ Add new book") }} 
-                        </p>
-                    </a>    
+
+
+                <div class="p-6 text-gray-900">
+
+                    <h3 class='p-4'>Your Favorate Books!</h3>
+
+
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>
@@ -28,7 +28,7 @@
                         </tr>
                         </thead>
 
-                        @foreach ($books as $book)
+                        {{-- @foreach ($books as $book)
                             <tr  class="border-b dark:border-neutral-500">
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <a href="{{action([App\Http\Controllers\BookController::class, 'details'],['id'=> $book->id])}}">
@@ -48,13 +48,13 @@
                                         @endforeach
                                     </ul>                       
                                 </td>
-                                <td class="whitespace-nowrap px-6 py-4 border-l text-center dark:border-neutral-500">
+                                <td class="whitespace-nowrap px-6 py-4 border text-center">
                                     <a href="{{action([App\Http\Controllers\BookController::class, 'edit'],['id'=> $book->id])}}">
                                         {{ __("Edit") }}
                                     </a>    
                                 </td>
                             </tr>
-                        @endforeach
+                        @endforeach --}}
                     </table>
 
                 </div>
