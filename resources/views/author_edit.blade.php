@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
-            {{ __('Editing an author') }}
+            {{ __('messages.Editing_an_author') }}
         </h2>
     </x-slot>
 
@@ -15,34 +15,34 @@
                         @method('PUT')
 
                         <fieldset>
-                            <legend style="font-size: 150%">{{__("Edit")}}</legend>
+                            <legend style="font-size: 150%">{{__("messages.Edit")}}</legend>
 
                             <div class="p-3">
-                                <label for="author_name">{{__("Name")}}</label>
+                                <label for="author_name">{{__("messages.Name")}}</label>
                                 <br>
                                 <x-text-input type="text" name="author_name" id="author_name" value="{{ old('name', $author->name) }}" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
-                                <label for="author_pseudonym">{{__("Pseudonym")}}</label>
+                                <label for="author_pseudonym">{{__("messages.Pseudonym")}}</label>
                                 <br>
                                 <x-text-input type="text" name="author_pseudonym" id="author_pseudonym" value="{{ old('Pseudonym', $author->pseudonym) }}" />
                             </div>
 
                             <div class="p-3">
-                                <label for="author_year">{{__("Birthday")}}</label>
+                                <label for="author_year">{{__("messages.Birthday")}}</label>
                                 <br>
                                 <x-text-input type="date" name="author_year" id="author_year" value="{{ old('Birthday', $author->birthday) }}" />
                             </div>
 
                             <div class="p-3">
-                                <label for="author_country">{{__("Country")}}</label>
+                                <label for="author_country">{{__("messages.Country")}}</label>
                                 <br>
                                 <x-text-input type="text" name="author_country" id="author_country" value="{{ old('Country', $author->country) }}" />
                             </div>
 
                             <div class="p-4">
-                                <label for="book_id">{{__("Books")}}</label>
+                                <label for="book_id">{{__("messages.Books")}}</label>
                                 <br>
                                 @foreach ($books->sortBy('title') as $book)
                                     <label>
@@ -60,7 +60,7 @@
                                     @csrf
                                     @method('PUT')
                                     <x-primary-button class="max-w-7xl mx-auto sm:px-6 lg:px-8 dark:bg-indigo-400" type="submit">
-                                        {{__("Save")}}
+                                        {{__("messages.Save")}}
                                     </x-primary-button>
                                 </form>
 
@@ -76,7 +76,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <x-danger-button class=" max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" type="submit" onclick="return confirmDelete()">
-                                        {{__("Delete")}}
+                                        {{__("messages.Delete")}}
                                     </x-danger-button>
                                 </form>
 

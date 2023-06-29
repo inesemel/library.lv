@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\Gate;
 
 class AuthorController extends Controller
 {
@@ -31,6 +32,9 @@ class AuthorController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $books = Book::orderBy('title')->get();
         return view('author_new', ['books' => $books]);
     }
@@ -75,6 +79,9 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $author = Author::findOrFail($id);
         $books= Book::all();
 
@@ -86,6 +93,9 @@ class AuthorController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
          $request->validate([
             'author_name' =>'required|max:255',
             'author_pseudonym' => 'required|max:255',
@@ -113,6 +123,9 @@ class AuthorController extends Controller
      */
     public function destroy(string $id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         Author::findOrfail($id)->delete();
         return redirect('/authors');
     }

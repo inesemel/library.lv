@@ -7,6 +7,7 @@ use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\BookIssueController;
 use App\Http\Controllers\BookUserController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\Author;
 
@@ -29,12 +30,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::post('/change-language', [LanguageController::class, 'changeLanguage'])->name('change-language');
 
 Route::resource('/book', BookController::class, ['except' => ['details', 'edit', 'create']]);
 Route::get('{id}/details', [BookController::class, 'details']);
@@ -54,11 +56,11 @@ Route::resource('/publisher', PublisherController::class, ['except' => ['edit', 
 Route::get('publisher/{id}/edit', [PublisherController::class, 'edit']);
 Route::get('publishernew', [PublisherController::class, 'create']);
 
-Route::get('/issue/create', [BookIssueController::class, 'create']);
+Route::get('/issue/create', [BookIssueController::class, 'create'])->name('issue.create');
 Route::post('book/issue/new', [BookIssueController::class, 'store']);
-Route::get('/issue/view', [BookIssueController::class, 'index']);
+Route::get('/issue/view', [BookIssueController::class, 'index'])->name('issue.index');
 
 Route::post('book/{book}/vote', [BookUserController::class, 'vote'])->name('book.vote');
-//Route::get('favorite', [FavoritesController::class, 'index']);
+Route::post('/change-language', [LanguageController::class, 'changeLanguage'])->name('change-language');
 
 require __DIR__.'/auth.php';

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\BookUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //user ID
+use Illuminate\Support\Facades\Gate;
 
 class BookIssueController extends Controller
 {
@@ -21,6 +22,9 @@ class BookIssueController extends Controller
     //
     public function create()
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $books = Book::all();
 
         return view('issue_create', compact('books'));

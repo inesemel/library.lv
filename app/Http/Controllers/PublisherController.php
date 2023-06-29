@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PublisherController extends Controller
 {
@@ -23,6 +24,9 @@ class PublisherController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         return view('publisher_new');
     }
 
@@ -32,6 +36,9 @@ class PublisherController extends Controller
     public function store(Request $request)
     {
         //
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $request->validate([
             'publisher_title' =>'required|max:255',
             'publisher_address' => 'required'
@@ -61,6 +68,9 @@ class PublisherController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $publisher = Publisher::findOrFail($id);
 
         return view('publisher_edit', compact('publisher'));
@@ -71,6 +81,9 @@ class PublisherController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $request->validate([
             'publisher_title' =>'required|max:255',
             'publisher_address' => 'required'
@@ -92,6 +105,9 @@ class PublisherController extends Controller
      */
     public function destroy(string $id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         Publisher::findOrfail($id)->delete();
         return redirect(action([PublisherController::class, 'index']));;
     }

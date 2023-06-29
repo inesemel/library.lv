@@ -13,30 +13,53 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"> 
-                        {{ __('Dashboard') }}
+                        {{ __('messages.Dashboard') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
-                        {{ __('All books') }}
+                        {{ __('messages.Books') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('authors.index')" :active="request()->routeIs('authors.index')">
-                        {{ __('All authors') }}
+                        {{ __('messages.Authors') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('publisher.index')" :active="request()->routeIs('publisher.index')">
-                        {{ __('All publishers') }}
+                        {{ __('messages.Publishers') }}
                     </x-nav-link>
                 </div>
-                {{----}} <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('favorite.index')" :active="request()->routeIs('favorite.index')">
-                        {{ __('Favorites') }}
+                        {{ __('messages.Favorites') }}
                     </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('issue.index')" :active="request()->routeIs('issue.index')">
+                        {{ __('messages.Issues') }}
+                    </x-nav-link>
+                </div>
+                @can('is-admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('issue.create')" :active="request()->routeIs('issue.create')">
+                            {{ __('messages.Add_new_issue') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+                <div>
+                <form action="{{ route('change-language') }}" method="post">
+                    @csrf
+                    <select name="locale" onchange="this.form.submit()">
+                        <option value="en" {{ App::getLocale() === 'en' ? 'selected' : '' }}>English</option>
+                        <option value="lv" {{ App::getLocale() === 'lv' ? 'selected' : '' }}>Latviešu</option>
+                    </select>
+                </form>
                 </div>
             </div>
 
@@ -93,7 +116,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('messages.Profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -103,7 +126,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('messages.Log_Out') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -126,26 +149,38 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('messages.Dashboard') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
-                {{ __('All books') }}
+                {{ __('messages.All_books') }}
             </x-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('authors.index')" :active="request()->routeIs('authors.index')">
-                {{ __('All authors') }}
+                {{ __('messages.All_authors') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('favorite.index')" :active="request()->routeIs('favorite.index')">
-                {{ __('Favorites') }}
+                {{ __('messages.Favorites') }}
             </x-responsive-nav-link>
         </div>
-        
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('issue.index')" :active="request()->routeIs('issue.index')">
+                {{ __('messages.Issues') }}
+            </x-responsive-nav-link>
+        </div>
+        @can('is-admin')
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('issue.create')" :active="request()->routeIs('issue.create')">
+                    {{ __('messages.Add_new_issue') }}
+                </x-responsive-nav-link>
+            </div>
+        @endcan
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">

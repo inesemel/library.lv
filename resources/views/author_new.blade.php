@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
-            {{ __('Adding a new author') }}
+            {{ __('messages.Adding_a_new_author') }}
         </h2>
     </x-slot>
 
@@ -15,7 +15,7 @@
                         
 
                         <fieldset>
-                            <legend class="font-semibold">{{__("Add new author")}}</legend>
+                            <legend class="font-semibold">{{__("messages.Add_new_author")}}</legend>
                             @if ($errors->any())
                                 <div class="alert alert-danger text-red-800 dark:text-red-500">
                                     <ul>
@@ -27,31 +27,31 @@
                             @endif
 
                             <div class="p-3">
-                                <label for="author_name">{{__("Name")}}</label>
+                                <label for="author_name">{{__("messages.Name")}}</label>
                                 <br>
                                 <x-text-input type="text" name="author_name" id="author_name"  style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
-                                <label for="author_pseudonym">{{__("Pseudonym")}}</label>
+                                <label for="author_pseudonym">{{__("messages.Pseudonym")}}</label>
                                 <br>
                                 <x-text-input type="text" name="author_pseudonym" id="author_pseudonym" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
-                                <label for="author_year">{{__("Birthday")}}</label>
+                                <label for="author_year">{{__("messages.Birthday")}}</label>
                                 <br>
                                 <x-text-input type="date" name="author_year" id="author_year"/>
                             </div>
 
                             <div class="p-3">
-                                <label for="author_country">{{__("Country")}}</label>
+                                <label for="author_country">{{__("messages.Country")}}</label>
                                 <br>
                                 <x-text-input type="text" name="author_country" id="author_country" />
                             </div>
 
                             <div class="p-4">
-                                <label for="book_id">{{__("Books")}}</label>
+                                <label for="book_id">{{__("messages.Books")}}</label>
                                 <br>
                                 @foreach ($books->sortBy('title') as $book)
                                     <label>
@@ -65,7 +65,7 @@
                         
                         <div class="px-6 py-4 text-right">
                             <x-primary-button class="max-w-7xl mx-auto sm:px-6 lg:px-8 dark:bg-indigo-400" type="submit">
-                                {{__("Save")}}
+                                {{__("messages.Save")}}
                             </x-primary-button>
                         </div>
                     </form>

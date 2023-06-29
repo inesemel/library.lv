@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
-            {{ __('Dashboard') }}
+            {{ __('messages.Dashboard') }}
         </h2>
     </x-slot>
 
@@ -9,10 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-900 dark:border-gray-700">
                 <div class="p-6 text-gray-900 dark:text-gray-300 font-semibold">
-                    {{ __("You're logged in!") }} <br>
+                    {{ __("messages.You_are_logged_in!") }} <br>
                 </div>
                 <div class="p-6 text-gray-800 dark:text-gray-400">
-                    {{ __("We hope you find what you are looking for...") }} <br>
+                    {{ __("messages.We_hope") }} <br>
                 </div>
             </div>
 
@@ -26,11 +26,10 @@
                                 </svg>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("Books") }}</h2>
+                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("messages.Books") }}</h2>
 
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                A list of all available books in our library system.
-                                Our library system currently offers a vast collection of books covering a variety of genres and topics. From classic literature to contemporary bestsellers, our selection caters to all reading interests. 
+                                {{__('messages.A_list_of_all')}}
                             </p>
                         </div>
 
@@ -47,10 +46,10 @@
                                 </svg>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("Authors") }}</h2>
+                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("messages.Authors") }}</h2>
 
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                A list of all people who have authored a book. Some authors are well-known and beloved figures of literature, while others are up-and-coming writers making their debut.
+                                {{__('messages.A_list_of_all_people')}}
                             </p>
                         </div>
 
@@ -67,10 +66,10 @@
                                 </svg>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("Favorited") }}</h2>
+                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("messages.Favorited") }}</h2>
 
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                Here you'll find all your "Favorited" books for this profile. By saving books to your "Favorite" list, you can easily access them all in one place, making it easy to navigate and manage your collection.
+                            {{__('messages.Here_youll_find_all_your_Favorited_books')}}
                             </p>
                         </div>
 
@@ -87,10 +86,10 @@
                                 </svg>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("Publishers") }}</h2>
+                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ __("messages.Publishers") }}</h2>
 
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                A list of all publishers our library system has worked with over the years.
+                                {{__('messages.A_list_of_all_publishers_our_library')}}
                             </p>
                         </div>
 
@@ -98,17 +97,24 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                         </svg>
                     </a>
+
                 </div>
             </div>
             <div class="mt-8 text-right">
                 <div class="grid grid-cols-8 gap-6">
-                    <a href="{{action([App\Http\Controllers\BookController::class, 'index'])}}">{{ __("All books") }}</a>
+                    <a href="{{action([App\Http\Controllers\BookController::class, 'index'])}}">{{ __("messages.All_books") }}</a>
                     <br><br>
-                    <a href="{{action([App\Http\Controllers\AuthorController::class, 'index'])}}">{{ __("All authors") }}</a>
+                    <a href="{{action([App\Http\Controllers\AuthorController::class, 'index'])}}">{{ __("messages.All_authors") }}</a>
                     <br><br>
-                    <a href="{{action([App\Http\Controllers\FavoritesController::class, 'index'])}}">{{ __("Favorites") }}</a>
+                    <a href="{{action([App\Http\Controllers\FavoritesController::class, 'index'])}}">{{ __("messages.My_favorite_books") }}</a>
                     <br><br>
-                    <a href="{{action([App\Http\Controllers\PublisherController::class, 'index'])}}">{{ __("All publishers") }}</a>
+                    <a href="{{action([App\Http\Controllers\PublisherController::class, 'index'])}}">{{ __("messages.All_publishers") }}</a>
+                    <br><br>
+                    @can('is-admin')
+                        <a href="{{action([App\Http\Controllers\BookIssueController::class, 'create'])}}">{{ __("messages.New_book_issue") }}</a>
+                    @endcan
+                    <br><br>
+                    <a href="{{action([App\Http\Controllers\BookIssueController::class, 'index'])}}">{{ __("messages.My_book_issues") }}</a>
                 </div>
             </div>
         </div>

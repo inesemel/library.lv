@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
-            {{ __('About the book') }}
+            {{ __('messages.About_the_book') }}
         </h2>
     </x-slot>
 
@@ -10,17 +10,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-900 dark:border-gray-700">
                 <div class="p-6 text-gray-900 dark:text-gray-300">
                     
-                    <h3 class='p-4 font-semibold'>{{__("Details")}}</h3>
+                    <h3 class='p-4 font-semibold'>{{__("messages.Details")}}</h3>
 
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>
-                            <th scope="col" class="px-6 py-4">{{__("Title")}}</th>
-                            <th scope="col" class="px-6 py-4">{{__("Authors")}}</th>
-                            <th scope="col" class="px-6 py-4">{{__("Pages")}}</th>
-                            <th scope="col" class="px-6 py-4">{{__("Year")}}</th>
-                            <th scope="col" class="px-6 py-4">{{__("Publisher")}}</th>
-                            <th scope="col" class="px-6 py-4">{{__("Genre")}}</th>
+                            <th scope="col" class="px-6 py-4">{{__("messages.Title")}}</th>
+                            <th scope="col" class="px-6 py-4">{{__("messages.Authors")}}</th>
+                            <th scope="col" class="px-6 py-4">{{__("messages.Pages")}}</th>
+                            <th scope="col" class="px-6 py-4">{{__("messages.Year")}}</th>
+                            <th scope="col" class="px-6 py-4">{{__("messages.Publisher")}}</th>
+                            <th scope="col" class="px-6 py-4">{{__("messages.Genre")}}</th>
                             
 
 
@@ -46,11 +46,13 @@
                                 <td class="whitespace-nowrap px-6 py-4">{{ $publisher->title }}</td>
                                 <td class="whitespace-nowrap px-6 py-4">{{ $book->genre }}</td>
 
-                                <td class="whitespace-nowrap px-6 py-4 border-l dark:border-neutral-500 dark:bg-gray-800 text-center">
-                                    <a href="{{action([App\Http\Controllers\BookController::class, 'edit'],['id'=> $book->id])}}">
-                                        {{ __("Edit") }}
-                                    </a>    
-                                </td>
+                                @can('is-admin')
+                                    <td class="whitespace-nowrap px-6 py-4 border-l dark:border-neutral-500 dark:bg-gray-800 text-center">
+                                        <a href="{{action([App\Http\Controllers\BookController::class, 'edit'],['id'=> $book->id])}}">
+                                            {{ __("messages.Edit") }}
+                                        </a>    
+                                    </td>
+                                @endcan
                             </tr>
                     </table>
 

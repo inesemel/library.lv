@@ -8,6 +8,7 @@ use App\Models\Publisher;
 use App\Models\BookUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BookController extends Controller
 {
@@ -34,6 +35,9 @@ class BookController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $authors = Author::orderBy('name')->get();
         $publishers = Publisher::orderBy('title')->get();
         //return view('book_new', array('publishers' =>$publishers, 'authors' => $authors));
@@ -47,6 +51,9 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $request->validate([
             'book_title' =>'required|max:255',
             'book_year' => 'integer|required|max:2023',
@@ -84,6 +91,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $book = Book::findOrFail($id);
         $authors = Author::all();
         $publishers = Publisher::orderBy('title')->get();
@@ -97,6 +107,9 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
          $request->validate([
             'book_title' =>'required|max:255',
             'book_year' => 'integer|required|max:2023',
@@ -131,6 +144,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('is-admin')) {
+            abort(403);
+        }
         $book = Book::findOrFail($id);
         $book->authors()->detach();
         $book->delete();

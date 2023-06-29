@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Editing the book') }}
+            {{ __('messages.Editing_the_book') }}
         </h2>
     </x-slot>
 
@@ -15,7 +15,7 @@
                         
 
                         <fieldset>
-                            <legend>{{__("Create")}}</legend>
+                            <legend>{{__("messages.Create")}}</legend>
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -26,7 +26,7 @@
                                 </div>
                             @endif
                             <div class="p-3">
-                                <label for="book_id">{{__("Select a book")}}</label>
+                                <label for="book_id">{{__("messages.Select_a_book")}}</label>
                                 <br>
                                 <select id="book_id" name="book_id">
                                 
@@ -39,12 +39,12 @@
                             </div>
 
                             <div class="p-3">
-                                <label for="user_id">{{__("User ID")}}</label>
+                                <label for="user_id">{{__("messages.User_ID")}}</label>
                                 <input id="user_id" name="user_id" type="number"/>
                             </div>
 
                             <div class="p-3">
-                                <label for="return_date">{{__("Return date")}}</label>
+                                <label for="return_date">{{__("messages.Return_date")}}</label>
                                 <input type="date" name="return_date" id="return_date"  />
                             </div>
                              

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
-            {{ __('Editing a publisher') }}
+            {{ __('messages.Editing_a_publisher') }}
         </h2>
     </x-slot>
 
@@ -15,16 +15,16 @@
                         @method('PUT')
 
                         <fieldset>
-                            <legend style="font-size: 150%">{{__("Edit")}}</legend>
+                            <legend style="font-size: 150%">{{__("messages.Edit")}}</legend>
 
                             <div class="p-3">
-                                <label for="publisher_title">{{__("Title")}}</label>
+                                <label for="publisher_title">{{__("messages.Title")}}</label>
                                 <br>
                                 <x-text-input type="text" name="publisher_title" id="publisher_title" value="{{ old('title', $publisher->title) }}" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
-                                <label for="publisher_address">{{__("Address")}}</label>
+                                <label for="publisher_address">{{__("messages.Address")}}</label>
                                 <br>
                                 <x-text-input type="text" name="publisher_address" id="publisher_address" value="{{ old('publisher', $publisher->address) }}" style="width: 100%"/>
                             </div>
@@ -37,7 +37,7 @@
                                     @csrf
                                     @method('PUT')
                                     <x-primary-button class="max-w-7xl mx-auto sm:px-6 lg:px-8 dark:bg-indigo-400" type="submit">
-                                        {{__("Save")}}
+                                        {{__("messages.Save")}}
                                     </x-primary-button>
                                     </form>
 
@@ -53,7 +53,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <x-danger-button class=" max-w-7xl mx-auto sm:px-6 lg:px-8 text-right" type="submit" onclick="return confirmDelete()">
-                                        {{__("Delete")}}
+                                        {{__("messages.Delete")}}
                                     </x-danger-button>
                                 </form>
 
