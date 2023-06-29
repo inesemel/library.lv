@@ -41,7 +41,7 @@ Route::get('{id}/details', [BookController::class, 'details']);
 Route::get('{id}/edit', [BookController::class, 'edit']);
 Route::delete('book/{id}', [BookController::class, 'destroy']);
 
-Route::resource('/book/favorite', FavoritesController::class);
+Route::resource('/favorite', FavoritesController::class);
 
 
 Route::get('/new', [BookController::class, 'create']);
@@ -59,6 +59,6 @@ Route::post('book/issue/new', [BookIssueController::class, 'store']);
 Route::get('/issue/view', [BookIssueController::class, 'index']);
 
 Route::post('book/{book}/vote', [BookUserController::class, 'vote'])->name('book.vote');
-Route::get('/favorite', [FavoritesController::class, 'index']);
+//Route::get('favorite', [FavoritesController::class, 'index']);
 
 require __DIR__.'/auth.php';
