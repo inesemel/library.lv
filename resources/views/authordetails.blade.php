@@ -1,19 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
             {{ __('About the author') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-900 dark:border-gray-700">
+                <div class="p-6 text-gray-900 dark:text-gray-300">
 
+                    <h3 class='p-4 font-semibold'>{{__("Details")}}</h3>
 
-
-                <div class="p-6 text-gray-900">
-
-                    <h3 class='p-4'>{{__("Details")}}</h3>
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>
@@ -47,7 +45,7 @@
                                     @endforeach
                                 </ul>                       
                             </td>
-                            <td class="whitespace-nowrap px-6 py-4 border text-center">
+                            <td class="whitespace-nowrap px-6 py-4 border-l dark:border-neutral-500 dark:bg-gray-800 text-center">
                                 <a href="{{action([App\Http\Controllers\AuthorController::class, 'edit'],['id'=> $author->id])}}">
                                     {{ __("Edit") }}
                                 </a>    
