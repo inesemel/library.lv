@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
-            {{ __('Amessages.Add_new_publisher') }}
+            {{ __('messages.Add_new_publisher') }}
         </h2>
     </x-slot>
 

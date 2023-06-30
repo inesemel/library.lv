@@ -61,6 +61,7 @@ Route::post('book/issue/new', [BookIssueController::class, 'store']);
 Route::get('/issue/view', [BookIssueController::class, 'index'])->name('issue.index');
 
 Route::post('book/{book}/vote', [BookUserController::class, 'vote'])->name('book.vote');
+Route::delete('/books/{book}/vote', [BookUserController::class, 'deleteVote'])->name('books.delete_vote');
 Route::post('/change-language', [LanguageController::class, 'changeLanguage'])->name('change-language');
 
 require __DIR__.'/auth.php';

@@ -38,6 +38,7 @@ class BookController extends Controller
         if (Gate::denies('is-admin')) {
             abort(403);
         }
+
         $authors = Author::orderBy('name')->get();
         $publishers = Publisher::orderBy('title')->get();
         //return view('book_new', array('publishers' =>$publishers, 'authors' => $authors));
@@ -54,12 +55,14 @@ class BookController extends Controller
         if (Gate::denies('is-admin')) {
             abort(403);
         }
+
         $request->validate([
             'book_title' =>'required|max:255',
             'book_year' => 'integer|required|max:2023',
             'book_pages' => 'integer|required|gt:0',
             'description' => 'required', //noņēmu nullable un string
-            'book_genre' => 'required|max:255'
+            'book_genre' => 'required|max:255',
+            'book_image' => 'required'
         ]);
         $book = new Book;
 
@@ -71,6 +74,7 @@ class BookController extends Controller
         $book->cased = $request->has('cased');
         $book->reprint = $request->has('reprint');
         $book->publisher_id = $request->input('publisher_id');
+        $book->image_url = $request->input('book_image');
 
         $book->save();
         $selectedAuthors = $request->input('authors', []);
@@ -110,10 +114,12 @@ class BookController extends Controller
         if (Gate::denies('is-admin')) {
             abort(403);
         }
+
          $request->validate([
             'book_title' =>'required|max:255',
             'book_year' => 'integer|required|max:2023',
             'book_pages' => 'integer|required|gt:0',
+            'book_image' => 'required',
             'description' => 'required' //es saprotu, ka grib, lai tas būtu arī
             //nullable, bet nestrādā, jo laikam datubāžu veidošanā tas ir uzlikts,
             //kā not NULL, jo nevar citādāk palaist
@@ -125,7 +131,8 @@ class BookController extends Controller
             'year' => $request->input('book_year'),
             'pages' => $request->input('book_pages'),
             'description' => $request->input('description'),
-            'publisher_id' => $request->input('publisher_id')
+            'publisher_id' => $request->input('publisher_id'),
+            'image_url' => $request->input('book_image')
             
         ]);
     
@@ -147,6 +154,7 @@ class BookController extends Controller
         if (Gate::denies('is-admin')) {
             abort(403);
         }
+
         $book = Book::findOrFail($id);
         $book->authors()->detach();
         $book->delete();

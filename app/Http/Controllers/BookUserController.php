@@ -18,10 +18,28 @@ class BookUserController extends Controller
      public function vote(Book $book)
     {
         $user = Auth::user();
-
+        if($book->voters->contains($user)){
+            return redirect()->back()->with('error', 'You have already voted for this book.');
+        }
+        
         $book->voters()->attach($user);
 
         return redirect()->back()->with('success', 'Vote added successfully.');
+    }
+
+    public function deleteVote(Book $book)
+    {
+        $user = Auth::user();
+
+        // Detach the user and book from the pivot table
+        $book->voters()->detach($user);
+
+        // Optionally, update the book table to reflect the updated vote count or any other relevant information
+        // $book->vote_count -= 1;
+        // $book->save();
+
+        // Redirect back with a success message or return a success response
+        return redirect()->back()->with('success', 'Vote deleted successfully.');
     }
 
     public function index()

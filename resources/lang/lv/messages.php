@@ -7,6 +7,7 @@ return [
     'List_of_books' => 'Grāmatu saraksts',
     'Add_new_book' => '+ Pievienot jaunu grāmatu',
     'Editing_the_book' => 'Grāmatas informācijas rediģēšana',
+    'Image' => 'Attēls',
     'Edit' => 'Labot',
     'Delete' => 'Dzēst',
     'Save' => 'Saglabāt',

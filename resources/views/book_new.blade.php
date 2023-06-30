@@ -96,7 +96,12 @@
                                 <label for="reprint">{{__("messages.Reprint")}}</label>
                                 <input id="reprint_book" name="reprint" type="checkbox"
                                 class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"/>
-                            </div>                            
+                            </div>
+                            
+                            <div class="p-3">
+                                <label for="book_title">{{__("messages.Image")}}</label><br>
+                                <x-text-input  type="text" name="book_image" id="book_image" style="width: 100%; border"/>
+                            </div>
 
                         </fieldset>
                         

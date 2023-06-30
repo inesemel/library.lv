@@ -26,8 +26,8 @@
                                 </div>
                             @endif
                             <div class="p-3">
-                                <label for="book_title">{{__("messages.Title")}}</label>
-                                <input type="text" name="book_title" id="book_title" value="{{ old('title', $book->title) }}" />
+                                <label for="book_title">{{__("messages.Title")}}</label><br>
+                                <x-text-input  type="text" name="book_title" id="book_title" value="{{ old('title', $book->title) }}" style="width: 100%"/>
                             </div>
 
                             <div class="p-3">
@@ -86,7 +86,12 @@
                                 <label for="reprint">{{__("messages.Reprint")}}</label>
                                 <input id="reprint" name="reprint" type="checkbox" value="{{$book->reprint}}" @checked($book->reprint)
                                 class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"/>
-                            </div>  
+                            </div>
+
+                            <div class="p-3">
+                                <label for="book_title">{{__("messages.Image")}}</label><br>
+                                <x-text-input  type="text" name="book_image" id="book_image" value="{{ old('title', $book->image_url) }}" style="width: 100%, border" />
+                            </div>
                              
                         </fieldset>
                         <table class="min-w-full text-left font-light my-3">

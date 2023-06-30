@@ -1,19 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-300">
             {{ __('messages.List_of_book_issues') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-900">
 
 
 
-                <div class="p-6 text-gray-900">
-
-                    <h3 class='p-4'>{{__("messages.My_book_issues")}}</h3>
+                <div class="p-6 text-gray-900 dark:text-gray-300">
+                    <h3 class='p-4 font-semibold'>{{__("messages.My_book_issues")}}</h3>
                     
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"

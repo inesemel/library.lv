@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','publisher_id', 'pages', 'year', 'genre', 'reprint', 'cased', 'description'];
+    protected $fillable = ['title','publisher_id', 'pages', 'year', 'genre', 'reprint', 'cased', 'description', 'image_url'];
     public function publisher(){
         return $this->belongsTo(Publisher::class);
     }

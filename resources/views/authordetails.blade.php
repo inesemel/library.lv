@@ -45,11 +45,13 @@
                                     @endforeach
                                 </ul>                       
                             </td>
+                            @can('is-admin')
                             <td class="whitespace-nowrap px-6 py-4 border-l dark:border-neutral-500 dark:bg-gray-800 text-center">
                                 <a href="{{action([App\Http\Controllers\AuthorController::class, 'edit'],['id'=> $author->id])}}">
                                     {{ __("messages.Edit") }}
                                 </a>    
                             </td>
+                            @endcan
                         </tr>
                     </table>
                     </table>
