@@ -11,11 +11,13 @@
                 <div class="p-6 text-gray-900  dark:text-gray-300">
 
                     <h3 class='p-4 font-semibold'>{{__("messages.All_books")}}</h3>
+                    @can('is-admin')
                     <a href="{{action([App\Http\Controllers\BookController::class, 'create'])}}" class="scale-100 p-6 border-black bg-gray-100 dark:bg-gray-800 rounded-lg shadow shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[0.99] transition-all duration-250 focus:outline focus:outline-2 focus:outline-indigo-500">
                         <p>
                             {{ __('messages.Add_new_book') }} 
                         </p>
-                    </a>    
+                    </a>  
+                    @endcan  
                     <table class="min-w-full text-left text-sm font-light">
                         <thead class="border-b font-medium dark:border-neutral-500"
                         <tr>

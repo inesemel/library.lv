@@ -1,6 +1,7 @@
 <?php
 return [
     'Profile' => 'Profile',
+    'About_the_book'=>'About the book',
     'Log_Out' => 'Log Out',
     'Dashboard' => 'Dashboard',
     'All_books' => 'All books',

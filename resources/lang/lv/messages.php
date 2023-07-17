@@ -1,6 +1,7 @@
 <?php
 return [
     'Profile' => 'Profils',
+    'About_the_book'=>'Par grāmatu',
     'Log_Out' => 'Izrakstīties',
     'Dashboard' => 'Infopanelis',
     'All_books' => 'Visas grāmatas',
